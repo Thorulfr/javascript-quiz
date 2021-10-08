@@ -15,6 +15,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 </head>
 <body>
+    <main class="container">
+        <div class="row my-3">
+            <div class="col-2 text-center">
+                View High Scores
+            </div>
+            <div class="col-8 text-center">
+            </div>
+            <div class="col-2 text-center">
+                Time: 60s
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center" id="quiz-box">
+                <div id="quiz-header">
+                    <h1>
+                        Coding Quiz Challenge
+                    </h1>
+                </div>
+                <div class="d-flex justify-content-center" id="quiz-body">
+                    <p>
+                        Try to answer the following code-related questions within the time limit.
+                        Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+                    </p>
+                </div>
+                <div id="quiz-start-button">
+                    <button type="button" class="btn btn-primary" id="start-button">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
     <!-- jQuery -->
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
