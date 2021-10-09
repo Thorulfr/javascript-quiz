@@ -1,25 +1,38 @@
+// Questions Object
 var questions = [
-    "<h1>The condition in an if/else statement is enclosed with:</h1>",
-    "<h1>A variable inside of a function can be used by other functions.</h1>",
-    "<h1>How do you add comments to JavaScript?</h1>",
-    "<h1>A 'switch' statement must always include a default option.</h1>",
-    "<h1>How do you increment an integer variable in JavaScript?</h1>",
-    "<h1>'Const' variables' values can be reassigned.</h1>"
+    "The condition in an if/else statement is enclosed with:",
+    "A variable inside of a function can be used by other functions.",
+    "How do you add comments to JavaScript?",
+    "A 'switch' statement must always include a default option.",
+    "How do you increment an integer variable in JavaScript?",
+    "'Const' variables' values can be reassigned."
+];
+
+// Answers Object
+var answers = [
+    ["( )", "[ ]", "{ }", "< >"]
 ];
 
 var questionNumber = 0;
 
 // When the start button is clicked, start the quiz
 $("#start-button").click(function() {
+    // Hide start button and instructions
     $("#start-button").addClass("d-none");
     $("#instructions").addClass("d-none");
-    $("#quiz-header").html(questions[0]);
+    // Change header to first question
+    $("#quiz-header").text(questions[0]);
+    // Show answer buttons and replace text with question one answers
     $("#answer-one").removeClass("d-none");
     $("#answer-one").addClass("d-inline-block");
+    $("#answer-one").text(answers[0][0]);
     $("#answer-two").removeClass("d-none");
     $("#answer-two").addClass("d-inline-block");
+    $("#answer-two").text(answers[0][1]);
     $("#answer-three").removeClass("d-none");
     $("#answer-three").addClass("d-inline-block");
+    $("#answer-three").text(answers[0][2]);
     $("#answer-four").removeClass("d-none");
     $("#answer-four").addClass("d-inline-block");
+    $("#answer-four").text(answers[0][3]);
 })
