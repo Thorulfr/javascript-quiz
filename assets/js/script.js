@@ -10,13 +10,25 @@ var questions = [
 
 // Answers Object
 var answers = [
-    ["( )", "[ ]", "{ }", "< >"]
+    ["( )", "[ ]", "{ }", "< >"],
+    ["True", "False"],
+    ["(( ))", "<!-- -->", "//", "/* */"],
+    [""]
 ];
+
+// Timer Functionality
+var timeLeft = 60;
+function countdown() {
+    timeLeft--;
+    $("#time-left").text("Time: " + timeLeft + "s");
+} 
 
 var questionNumber = 0;
 
 // When the start button is clicked, start the quiz
 $("#start-button").click(function() {
+    // Start timer countdown
+    setInterval(countdown, 1000);
     // Hide start button and instructions
     $("#start-button").addClass("d-none");
     $("#instructions").addClass("d-none");
@@ -35,4 +47,10 @@ $("#start-button").click(function() {
     $("#answer-four").removeClass("d-none");
     $("#answer-four").addClass("d-inline-block");
     $("#answer-four").text(answers[0][3]);
+    questionNumber++;
 })
+
+// After quiz is initialized, progress the questions/answer buttons
+function remainingQuestions() {
+    
+}
