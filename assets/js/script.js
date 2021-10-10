@@ -1,20 +1,21 @@
 // Questions Object
 var questions = [
     "The condition in an if/else statement is enclosed with:",
-    "A variable inside of a function can be used by other functions.",
+    "What is NOT a way to declare a variable in JavaScript?",
     "How do you add comments to JavaScript?",
-    "A 'switch' statement must always include a default option.",
+    "A 'switch' statement's options are defined using:",
     "How do you increment an integer variable in JavaScript?",
-    "'Const' variables' values can be reassigned."
+    "How do you assign a new value 'const' variables?"
 ];
 
-// Answers Object
-var answers = [
-    ["( )", "[ ]", "{ }", "< >"],
-    ["True", "False"],
-    ["(( ))", "<!-- -->", "//", "/* */"],
-    [""]
-];
+// Answers
+const one = {1:"( )", 2:"[ ]", 3:"{ }", 4:"< >", solution:"( )"};
+const two = {1:"var", 2:"let", 3:"const", 4:"decl", solution:"decl"};
+const three = {1:"(( ))", 2:"<!-- -->", 3:"//", 4: "/* */", solution:"//"};
+const four = {1:"option", 2:"case", 3:"choice", 4:"path", solution:"case"};
+const five = {1:"+", 2: "++", 3:"inc", 4:"inc+", solution:"++"};
+const six = {1: "let", 2:"[constant name] = [new value]", 3:"reassign", 4:"'const' variables cannot be changed", solution:"'const' variables cannot be changed"};
+var answers = [one, two, three, four, five, six];
 
 // Timer Functionality
 var timeLeft = 60;
@@ -25,6 +26,15 @@ function countdown() {
 
 var questionNumber = 0;
 
+// Populate question and answer buttons
+function populateQuestion() {
+    $("#quiz-header").text(questions[questionNumber]);
+    $("#answer-one").text(answers[questionNumber][1]);
+    $("#answer-two").text(answers[questionNumber][2]);
+    $("#answer-three").text(answers[questionNumber][3]);
+    $("#answer-four").text(answers[questionNumber][4]);
+};
+
 // When the start button is clicked, start the quiz
 $("#start-button").click(function() {
     // Start timer countdown
@@ -32,25 +42,19 @@ $("#start-button").click(function() {
     // Hide start button and instructions
     $("#start-button").addClass("d-none");
     $("#instructions").addClass("d-none");
-    // Change header to first question
-    $("#quiz-header").text(questions[0]);
+    // Create first question
+    populateQuestion();
     // Show answer buttons and replace text with question one answers
-    $("#answer-one").removeClass("d-none");
-    $("#answer-one").addClass("d-inline-block");
-    $("#answer-one").text(answers[0][0]);
-    $("#answer-two").removeClass("d-none");
-    $("#answer-two").addClass("d-inline-block");
-    $("#answer-two").text(answers[0][1]);
-    $("#answer-three").removeClass("d-none");
-    $("#answer-three").addClass("d-inline-block");
-    $("#answer-three").text(answers[0][2]);
-    $("#answer-four").removeClass("d-none");
-    $("#answer-four").addClass("d-inline-block");
-    $("#answer-four").text(answers[0][3]);
-    questionNumber++;
-})
+    $("#quiz-body").removeClass("d-none");
+    $("#quiz-body").addClass("d-inline-block");
+});
 
-// After quiz is initialized, progress the questions/answer buttons
-function remainingQuestions() {
-    
-}
+// When user selects an answer, display the next question and set of answers
+$("#quiz-body").find("button").click(function() {
+    var test = $(this).text();
+    if ($(this).text() === answers[questionNumber].solution) {
+        console.log("Correct!");
+    } else {
+        console.log("Wrong!");
+    }
+});
