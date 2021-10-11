@@ -2,7 +2,7 @@
 
 ## Description
 
-the following User Story and Acceptance Criteria.
+I was given the following User Story and Acceptance Criteria.
 
 ## User Story
 
@@ -36,7 +36,7 @@ THEN I can save my initials and score
 
 ## Website
 
-<https://thorulfr.github.io/taskmaster-pro/>
+<https://thorulfr.github.io/javascript-quiz/>
 
 ## Screenshot
 
