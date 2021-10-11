@@ -19,6 +19,7 @@ var answers = [one, two, three, four, five, six];
 
 var timeLeft = 60;
 var questionNumber = 0;
+var scores = {};
 
 // Populate question and answer buttons
 function populateQuestion() {
@@ -37,6 +38,24 @@ function endQuiz() {
     $("#score-submit").removeClass("d-none");
     $("#quiz-body").addClass("d-none");
 };
+
+// Save user's high score
+function saveScore() {
+    var tempArray = [];
+    var score = timeLeft;
+    var initials = $("#initials-input").val().trim();
+    tempArray.push({
+        score: score,
+        initials: initials
+    })
+    scores = tempArray;
+    localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+// Display high scores
+
+
+
 
 // Quiz Function
 $("#start-button").click(function() {
@@ -87,4 +106,9 @@ $("#start-button").click(function() {
             return false;
         }
     });
+});
+
+// When user submits score, save score and display high scores
+$("#initials-submit").click(function(){
+    saveScore();
 });
