@@ -29,6 +29,14 @@ function populateQuestion() {
     $("#answer-four").text(answers[questionNumber][4]);
 };
 
+// End the quiz and display final score
+function endQuiz() {
+    $("#quiz-header").text("All done!");
+    $("#instructions").removeClass("d-none");
+    $("#instructions").text("Your final score is " + timeLeft +".");
+    $("#score-submit").removeClass("d-none");
+};
+
 // Quiz Function
 $("#start-button").click(function() {
     // Start timer countdown
@@ -51,21 +59,19 @@ $("#start-button").click(function() {
     // Show answer buttons 
     $("#quiz-body").removeClass("d-none");
     $("#quiz-body").addClass("d-inline-block");
+    
     // When user selects an answer, tell them if they were correct and display the next question and set of answers
     $("#quiz-body").find("button").click(function() {
         $("#correctness").removeClass("d-none");
         if ($(this).text() === answers[questionNumber].solution) {
             $("#correctness").text("Correct!");
         } else {
-            console.log("Wrong!");
             $("#correctness").text("Wrong!");
-            timeLeft -= 5;
+            timeLeft -= 10;
+            $("#time-left").text("Time: " + timeLeft + "s");
         }
-        // Increment the question number and display next question after 3 seconds
+        // Increment the question number and display next question
         questionNumber++;
-        setTimeout(function() {
-            $("#correctness").addClass("d-none");
-            populateQuestion();
-        }, 3000);
+        populateQuestion();
     });
 });
