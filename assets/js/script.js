@@ -54,24 +54,36 @@ function saveScore() {
 
 // Display high scores
 function displayScores() {
-    $("#quiz-header").text("High Scores:");
+    scores = JSON.parse(localStorage.getItem("scores"));
+
+    $("#quiz-header").text("High Scores");
     $("#instructions").addClass("d-none");
     $("#start-button").addClass("d-none");
     $("#high-scores-column").addClass("d-none");
     $("#time-left").addClass("d-none");
-    JSON.parse(localStorage.getItem("scores"));
+    $("#score-submit").addClass("d-none");
     $("#high-scores").removeClass("d-none");
 }
 
 // Reset Quiz
 function resetQuiz() {
+    timeLeft = 60;
+    questionNumber = 0;
+    $("#time-left").text("Time: " + timeLeft + "s");
+    $("#quiz-header").text("Coding Quiz Challenge");
     $("#instructions").removeClass("d-none");
+    $("#instructions").text("Try to answer the following code-related questions within 60 seconds. Keep in mind that incorrect answers will penalize your score/time by ten seconds!")
     $("#start-button").removeClass("d-none");
     $("#high-scores-column").removeClass("d-none");
     $("#time-left").removeClass("d-none");
     $("#high-scores").addClass("d-none");
-    timeLeft = 60;
-    questionNumber = 0;
+    $("#score-submit").addClass("d-none");
+}
+
+// Clear scores
+function clearScores() {
+    scores = {};
+    localStorage.setItem("scores", JSON.stringify(scores));
 }
 
 // Quiz Function
@@ -115,6 +127,7 @@ $("#start-button").click(function() {
                 }
             }
                 // Increment the question number and display next question
+                console.log(questionNumber);
                 questionNumber++;
                 populateQuestion();
         } else {
@@ -127,7 +140,10 @@ $("#start-button").click(function() {
 
 // When user submits score, save score and display high scores
 $("#initials-submit").click(function(){
+    $("#correctness").addClass("d-none");
+    $("#initials-input").val("");
     saveScore();
+    displayScores();
 });
 
 // When user clicks View High Scores, display scores
@@ -135,7 +151,12 @@ $("#high-scores-button").click(function(){
     displayScores();
 })
 
-// When user clicks Go Back, reset quiz
+// When user clicks "Go Back," reset quiz
 $("#go-back").click(function(){
     resetQuiz();
+})
+
+// When user clicks "Clear High Scores," clear scores
+$("#reset-scores").click(function(){
+    clearScores();
 })
