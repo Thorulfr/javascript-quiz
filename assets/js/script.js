@@ -17,13 +17,7 @@ const five = {1:"+", 2: "++", 3:"inc", 4:"inc+", solution:"++"};
 const six = {1: "let", 2:"[constant name] = [new value]", 3:"reassign", 4:"'const' variables cannot be changed", solution:"'const' variables cannot be changed"};
 var answers = [one, two, three, four, five, six];
 
-// Timer Functionality
 var timeLeft = 60;
-function countdown() {
-    timeLeft--;
-    $("#time-left").text("Time: " + timeLeft + "s");
-} 
-
 var questionNumber = 0;
 
 // Populate question and answer buttons
@@ -35,26 +29,43 @@ function populateQuestion() {
     $("#answer-four").text(answers[questionNumber][4]);
 };
 
-// When the start button is clicked, start the quiz
+// Quiz Function
 $("#start-button").click(function() {
     // Start timer countdown
-    setInterval(countdown, 1000);
+    var timeInterval = setInterval(function() {
+        // If there is still time remaining, decrease timeLeft and update display
+        if (timeLeft > 1) {
+            timeLeft--;
+            $("#time-left").text("Time: " + timeLeft + "s");
+        // If no time remaining, 
+        } else {
+            $("#time-left").text("Time Up!");
+            clearInterval(timeInterval);
+        }
+    }, 1000);
     // Hide start button and instructions
     $("#start-button").addClass("d-none");
     $("#instructions").addClass("d-none");
     // Create first question
     populateQuestion();
-    // Show answer buttons and replace text with question one answers
+    // Show answer buttons 
     $("#quiz-body").removeClass("d-none");
     $("#quiz-body").addClass("d-inline-block");
-});
-
-// When user selects an answer, display the next question and set of answers
-$("#quiz-body").find("button").click(function() {
-    var test = $(this).text();
-    if ($(this).text() === answers[questionNumber].solution) {
-        console.log("Correct!");
-    } else {
-        console.log("Wrong!");
-    }
+    // When user selects an answer, tell them if they were correct and display the next question and set of answers
+    $("#quiz-body").find("button").click(function() {
+        $("#correctness").removeClass("d-none");
+        if ($(this).text() === answers[questionNumber].solution) {
+            $("#correctness").text("Correct!");
+        } else {
+            console.log("Wrong!");
+            $("#correctness").text("Wrong!");
+            timeLeft -= 5;
+        }
+        // Increment the question number and display next question after 3 seconds
+        questionNumber++;
+        setTimeout(function() {
+            $("#correctness").addClass("d-none");
+            populateQuestion();
+        }, 3000);
+    });
 });
