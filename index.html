@@ -17,8 +17,8 @@
 <body>
     <main class="container">
         <div class="row my-3 d-flex justify-content-center">
-            <div class="col-3 text-center">
-                View High Scores
+            <div class="col-3 text-center" id="high-scores-column">
+                <button type="button" class="btn btn-outline-primary" id="high-scores-button">View High Scores</button type="button">
             </div>
             <div class="col-6 text-center" id="quiz-box">
                 <div>
@@ -51,8 +51,12 @@
                     <input type="text" class="form-control" placeholder="Enter your initials" id="initials-input" aria-label="Your initials" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="button" id="initials-submit">Submit</button>
                 </div>
-                <div class="m-3 bg-primary text-white p-1" id="high-scores">
-                    1. BEH - 69
+                <div class="m-3 d-none" id="high-scores">
+                    <div class="row bg-primary text-white p-1 m-1 w-100 justify-content-center">1. BEH - 69</div>
+                    <div class="row justify-content-center">
+                        <button type="button" class="col-3 btn btn-outline-primary m-1" id="go-back">Go Back</button>
+                        <button type="button" class="col-3 btn btn-outline-primary m-1" id="reset-scores">Reset Scores</button>
+                    </div>
                 </div>
                 <div class="m-3 border-top border-2 border-dark text-start opacity-25 d-none" id="correctness"></div>
             </div>

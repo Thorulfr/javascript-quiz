@@ -53,9 +53,26 @@ function saveScore() {
 }
 
 // Display high scores
+function displayScores() {
+    $("#quiz-header").text("High Scores:");
+    $("#instructions").addClass("d-none");
+    $("#start-button").addClass("d-none");
+    $("#high-scores-column").addClass("d-none");
+    $("#time-left").addClass("d-none");
+    JSON.parse(localStorage.getItem("scores"));
+    $("#high-scores").removeClass("d-none");
+}
 
-
-
+// Reset Quiz
+function resetQuiz() {
+    $("#instructions").removeClass("d-none");
+    $("#start-button").removeClass("d-none");
+    $("#high-scores-column").removeClass("d-none");
+    $("#time-left").removeClass("d-none");
+    $("#high-scores").addClass("d-none");
+    timeLeft = 60;
+    questionNumber = 0;
+}
 
 // Quiz Function
 $("#start-button").click(function() {
@@ -112,3 +129,13 @@ $("#start-button").click(function() {
 $("#initials-submit").click(function(){
     saveScore();
 });
+
+// When user clicks View High Scores, display scores
+$("#high-scores-button").click(function(){
+    displayScores();
+})
+
+// When user clicks Go Back, reset quiz
+$("#go-back").click(function(){
+    resetQuiz();
+})
