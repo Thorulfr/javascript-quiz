@@ -89,7 +89,7 @@ function clearScores() {
 // Quiz Function
 $("#start-button").click(function() {
     // Start timer countdown
-    var timeInterval = setInterval(function() {
+    window.timeInterval = setInterval(function() {
         // If there is still time remaining, decrease timeLeft and update display
         if (timeLeft > 0) {
             timeLeft--;
@@ -109,33 +109,34 @@ $("#start-button").click(function() {
     // Show answer buttons 
     $("#quiz-body").removeClass("d-none");
     $("#quiz-body").addClass("d-inline-block");
-    // When user selects an answer, tell them if they were correct and display the next question and set of answers
-    $("#quiz-body").find("button").click(function() {
-        if (questionNumber < 5) {
-            $("#correctness").removeClass("d-none");
-            if ($(this).text() === answers[questionNumber].solution) {
-                $("#correctness").text("Correct!");
-            } else {
-                $("#correctness").text("Wrong!");
-                timeLeft -= 10;
-                if (timeLeft >= 0) {
-                    $("#time-left").text("Time: " + timeLeft + "s");
-                } else {
-                    timeLeft = 0;
-                    endQuiz();
-                    return false;
-                }
-            }
-                // Increment the question number and display next question
-                console.log(questionNumber);
-                questionNumber++;
-                populateQuestion();
+});
+
+// When user selects an answer, tell them if they were correct and display the next question and set of answers
+$("#quiz-body").find("button").click(function() {
+    if (questionNumber < 5) {
+        $("#correctness").removeClass("d-none");
+        if ($(this).text() === answers[questionNumber].solution) {
+            $("#correctness").text("Correct!");
         } else {
-            clearInterval(timeInterval);
-            endQuiz();
-            return false;
+            $("#correctness").text("Wrong!");
+            timeLeft -= 10;
+            if (timeLeft >= 0) {
+                $("#time-left").text("Time: " + timeLeft + "s");
+            } else {
+                timeLeft = 0;
+                endQuiz();
+                return false;
+            }
         }
-    });
+            // Increment the question number and display next question
+            console.log(questionNumber);
+            questionNumber++;
+            populateQuestion();
+    } else {
+        clearInterval(timeInterval);
+        endQuiz();
+        return false;
+    }
 });
 
 // When user submits score, save score and display high scores
