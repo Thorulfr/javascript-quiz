@@ -60,7 +60,7 @@ function endQuiz() {
 // Save user's high score
 function saveScore() {
     if (JSON.parse(localStorage.getItem('scores')) === null) {
-        scores = [];
+        let scores = [];
     } else {
         let scores = JSON.parse(localStorage.getItem('scores'));
     }
@@ -73,7 +73,7 @@ function saveScore() {
 // Display high scores
 function displayScores() {
     if (JSON.parse(localStorage.getItem('scores')) === null) {
-        scores = [];
+        let scores = [];
     } else {
         let scores = JSON.parse(localStorage.getItem('scores'));
     }
