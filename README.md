@@ -2,7 +2,9 @@
 
 ## Description
 
-I was given the following User Story and Acceptance Criteria.
+This application is a brief exercise in writing a simple, timed coding quiz to demonstrate skill in producing dynamically updated HTML and CSS.
+
+The following User Story and Acceptance Criteria were provided in the assignment requirements:
 
 ## User Story
 
@@ -30,17 +32,27 @@ THEN I can save my initials and score
 
 ## Built With
 
-* HTML
-* CSS
-* JavaScript
+-   HTML
+-   CSS
+-   JavaScript
 
 ## Website
 
 <https://thorulfr.github.io/javascript-quiz/>
 
-## Screenshot
+## Screenshots
 
-![Screenshot](./assets/images/readme-screenshot.png)
+### Landing Page
+
+![Landing-Page Screenshot](./assets/images/readme-screenshot-1.png)
+
+### Quiz
+
+![Quiz Screenshot](./assets/images/readme-screenshot-2.png)
+
+### High Scores
+
+![High Scores Screenshot](./assets/images/readme-screenshot-3.png)
 
 ## Contribution
 
