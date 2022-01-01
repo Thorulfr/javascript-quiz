@@ -59,10 +59,11 @@ function endQuiz() {
 
 // Save user's high score
 function saveScore() {
+    let scores;
     if (JSON.parse(localStorage.getItem('scores')) === null) {
-        let scores = [];
+        scores = [];
     } else {
-        let scores = JSON.parse(localStorage.getItem('scores'));
+        scores = JSON.parse(localStorage.getItem('scores'));
     }
     var score = timeLeft;
     var initials = $('#initials-input').val();
@@ -72,18 +73,16 @@ function saveScore() {
 
 // Display high scores
 function displayScores() {
-    $('#score-holder').html('');
+    let scores;
     if (JSON.parse(localStorage.getItem('scores')) === null) {
-        let scores = [];
+        scores = [];
     } else {
-        let scores = JSON.parse(localStorage.getItem('scores'));
-        if (scores.length > 1) {
-            // Sort by score
-            scores.sort(function (a, b) {
-                return b[1] - a[1];
-            });
-        }
+        scores = JSON.parse(localStorage.getItem('scores'));
     }
+    // Sort by score
+    scores.sort(function (a, b) {
+        return b[1] - a[1];
+    });
     // Generate HTML element
     for (let i = 0; i < scores.length; i++) {
         var scoreEl =
