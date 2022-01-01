@@ -77,10 +77,12 @@ function displayScores() {
         let scores = [];
     } else {
         let scores = JSON.parse(localStorage.getItem('scores'));
-        // Sort by score
-        scores.sort(function (a, b) {
-            return b[1] - a[1];
-        });
+        if (scores.length > 1) {
+            // Sort by score
+            scores.sort(function (a, b) {
+                return b[1] - a[1];
+            });
+        }
     }
     // Generate HTML element
     for (let i = 0; i < scores.length; i++) {
