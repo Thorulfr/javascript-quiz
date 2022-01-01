@@ -73,6 +73,7 @@ function saveScore() {
 
 // Display high scores
 function displayScores() {
+    $('#score-holder').html('');
     let scores;
     if (JSON.parse(localStorage.getItem('scores')) === null) {
         scores = [];
