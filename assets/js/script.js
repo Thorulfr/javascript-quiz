@@ -68,7 +68,11 @@ function saveScore() {
 
 // Display high scores
 function displayScores() {
-    let scores = JSON.parse(localStorage.getItem('scores'));
+    if (JSON.parse(localStorage.getItem('scores')) === null) {
+        scores = [];
+    } else {
+        let scores = JSON.parse(localStorage.getItem('scores'));
+    }
     // Sort by score
     scores.sort(function (a, b) {
         return b[1] - a[1];
