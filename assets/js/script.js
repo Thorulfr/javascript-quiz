@@ -59,7 +59,11 @@ function endQuiz() {
 
 // Save user's high score
 function saveScore() {
-    let scores = JSON.parse(localStorage.getItem('scores'));
+    if (JSON.parse(localStorage.getItem('scores')) === null) {
+        scores = [];
+    } else {
+        let scores = JSON.parse(localStorage.getItem('scores'));
+    }
     var score = timeLeft;
     var initials = $('#initials-input').val();
     scores.push([initials, score]);
